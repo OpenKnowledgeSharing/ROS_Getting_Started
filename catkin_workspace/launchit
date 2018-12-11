@@ -1,0 +1,28 @@
+source /opt/ros/kinetic/setup.bash
+catkin_make -j2
+source ./devel/setup.bash
+
+package_name="a_3d_model_world_plugin_launch"
+package_path="$(rospack find $package_name)"
+
+export GAZEBO_PLUGIN_PATH=./devel/lib:${GAZEBO_PLUGIN_PATH}
+export GAZEBO_MODEL_PATH="${package_path}"/models:${GAZEBO_MODEL_PATH}
+export GAZEBO_RESOURCE_PATH="${package_path}"/models:${GAZEBO_RESOURCE_PATH}
+
+source /usr/share/gazebo/setup.sh
+source /opt/ros/kinetic/setup.bash
+
+source ./devel/setup.bash
+
+roslaunch a_3d_model_world_plugin_launch bot_fixed_caster.launch &
+
+echo "Please set cmd_vel to give a turn command even for less than a sec"
+
+echo ""
+
+echo "after giving turn either reset sim or cmd_vel to go forward or reverse"
+
+echo " "
+
+echo "once the the cmd_vel is given the bot turns as bit towards the last turn direction and then goes straight"
+echo "best sought if given forward after reset"
