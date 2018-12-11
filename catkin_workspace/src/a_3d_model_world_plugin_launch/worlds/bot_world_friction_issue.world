@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+   
+    <model name="bot">
+     <pose frame=''>0 0 0.3735 0 -0 0</pose>
+      <include>
+        <uri>model://ROS_BOT_1</uri>
+      </include>
+      
+      <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+			 <alwaysOn>true</alwaysOn>
+			 <updateRate>1000</updateRate>
+			 <leftJoint>bot::ROS_BOT_1::link_0_JOINT_1</leftJoint>
+			 <rightJoint>bot::ROS_BOT_1::link_0_JOINT_0</rightJoint>
+			 <wheelSeparation>1.22</wheelSeparation>
+			 <wheelDiameter>1</wheelDiameter>
+			 <wheelAcceleration>0.12</wheelAcceleration>
+			 <torque>20.0</torque>
+			 <commandTopic>cmd_vel</commandTopic>
+			 <odometryTopic>odom</odometryTopic>
+			 <odometryFrame>odom</odometryFrame>
+			 <robotBaseFrame>bot::ROS_BOT_1::link_0</robotBaseFrame>
+			 <legacyMode>false</legacyMode>
+			 <publishWheelTF>true</publishWheelTF>
+			 <rosDebugLevel>true</rosDebugLevel>
+			 <tf_prefix>_bot</tf_prefix>
+			 <publishWheelTF>true</publishWheelTF>
+			 <publishWheelJointState>true</publishWheelJointState>
+			 <wheelTorque>20.0</wheelTorque>
+			 <odometrySource>1</odometrySource>
+			 <publishTf>1</publishTf>
+		 </plugin>
+
+    </model>
+  </world>
+</sdf>     
