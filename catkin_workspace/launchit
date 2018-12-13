@@ -1,0 +1,16 @@
+source /opt/ros/melodic/setup.bash
+catkin_make -j2
+source ./devel/setup.bash
+
+package_name="a_3d_model_world_plugin_launch"
+package_path="$(rospack find $package_name)"
+
+export GAZEBO_PLUGIN_PATH=./devel/lib:${GAZEBO_PLUGIN_PATH}
+export GAZEBO_MODEL_PATH="${package_path}"/models:${GAZEBO_MODEL_PATH}
+export GAZEBO_RESOURCE_PATH="${package_path}"/models:${GAZEBO_RESOURCE_PATH}
+
+source /usr/share/gazebo/setup.sh
+source /opt/ros/melodic/setup.bash
+
+source ./devel/setup.bash
+
